@@ -1,4 +1,9 @@
-1. Collect chunks of gold to score points.
-2. Avoid the ghost that chases you.
-3. You cannot go outside the window, so the ghost can trap you in the corners.
-4. The game is over when the ghost catches you.
+1. Move around with the keys A, S, D, W.
+	A: Left
+	S: Down
+	D: Right
+	W: Up
+2. Collect chunks of gold to score points.
+3. Avoid the ghost that chases you.
+4. You cannot go outside the window, so the ghost can trap you in the corners.
+5. The game is over when the ghost catches you.

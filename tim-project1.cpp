@@ -162,7 +162,7 @@ void display()
 	glEnableVertexAttribArray(0);
 	glEnableVertexAttribArray(1);
 	
-	glDrawArrays(GL_POLYGON, 20, 23);
+	glDrawArrays(GL_POLYGON, 19, 22);
 	glDrawArrays(GL_POLYGON, 0, 19);	//Renders
 	glFlush();					//Makes sure all data is rendered as soon as possible
 }
@@ -186,22 +186,40 @@ void moveShape()
 	int x = (rand() % 40) - 20;
 	int y = (rand() % 40) - 20;
 	
-	for(int i = 57; i < 72; i++)
-	{
-		xDLocation = (0.05f * x);
-		if(i % 2 == 0)
-		{
-			vertices[i] = (0.05f * x);
-			xDLocation = vertices[i];
-		}
-		if(i % 2 == 1)
-		{
-			vertices[i] = (0.05f * y);
-			yDLocation = vertices[i];
-		}
-	}
+	xDLocation = (0.05f * x);
+	yDLocation = (0.05f * y);
+	
+	vertices[57] = xDLocation;
+	vertices[58] = yDLocation;
+	
+	vertices[60] = xDLocation + 0.025f;
+	vertices[61] = yDLocation + 0.025f;
+	
+	vertices[63] = xDLocation + 0.05f;
+	vertices[64] = yDLocation;
+	
+	vertices[66] = xDLocation + 0.025f;
+	vertices[67] = yDLocation - 0.025f;
+	
+	vertices[69] = xDLocation;
+	vertices[70] = yDLocation;
+	
+	
 	cout << "XD: " << xDLocation << "  YD: " << yDLocation << endl;
+	for(int i = 57; i < 71; i+=3)
+	{
+		cout << vertices[i] << "\t" << vertices[i+1] << endl;
+	}
+	
 }
+
+
+
+
+
+
+
+
 
 
 

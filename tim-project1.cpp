@@ -5,56 +5,74 @@ using namespace std;
 GLuint abuffer;
 GLuint buffer[2];
 
-GLfloat vertices[] = {	0.0f,0.0f,0.0f,
+GLfloat vertices[] = {	0.0f,0.0f,0.0f,		//0
 				-0.0125f,0.0f,0.0f,
 				-0.025f,0.0125f,0.0f,
 				-0.025f,0.0375f,0.0f,
 				-0.0125f,0.05f,0.0f,
-				0.0125f,0.05f,0.0f,
+				0.0125f,0.05f,0.0f,	//5
 				0.025f,0.0375f,0.0f,
 				0.025f,0.0125f,0.0f,
 				0.0125f,0.0f,0.0f,
 				0.0f,0.0f,0.0f,
-				0.0f,-0.0125f,0.0f,
+				0.0f,-0.0125f,0.0f,	//10
 				-0.025f,-0.0125f,0.0f,
 				0.025f,-0.0125f,0.0f,
 				0.0f,-0.0125f,0.0f,
 				0.0f,-0.025f,0.0f,
-				-0.025f,-0.05f,0.0f,
+				-0.025f,-0.05f,0.0f,	//15
 				0.0f,-0.025f,0.0f,
 				0.025f,-0.05f,0.0f,
-				0.0f,-0.025f,0.0f	};
+				0.0f,-0.025f,0.0f,
+				
+				0.5f,0.5f,0.0f,
+				0.525f,0.525f,0.0f,		//20
+				0.55f,0.5f,0.0f,
+				0.525f,0.475f,0.0f,
+				0.5f,0.5f,0.0f
+					};
+
+
 
 				//R, G, B, A (transparency)
-GLfloat colors[] = {	0.0f,1.0f,0.0f,1.0f,
+GLfloat colors[] = {	0.0f,1.0f,0.0f,1.0f,	//0
 				0.0f,1.0f,0.0f,1.0f,
 				0.0f,1.0f,0.0f,1.0f,
 				0.0f,1.0f,0.0f,1.0f,
 				0.0f,1.0f,0.0f,1.0f,
+				0.0f,1.0f,0.0f,1.0f,	//5
 				0.0f,1.0f,0.0f,1.0f,
 				0.0f,1.0f,0.0f,1.0f,
 				0.0f,1.0f,0.0f,1.0f,
 				0.0f,1.0f,0.0f,1.0f,
+				0.0f,1.0f,0.0f,1.0f,	//10
 				0.0f,1.0f,0.0f,1.0f,
 				0.0f,1.0f,0.0f,1.0f,
 				0.0f,1.0f,0.0f,1.0f,
 				0.0f,1.0f,0.0f,1.0f,
+				0.0f,1.0f,0.0f,1.0f,	//15
 				0.0f,1.0f,0.0f,1.0f,
 				0.0f,1.0f,0.0f,1.0f,
 				0.0f,1.0f,0.0f,1.0f,
-				0.0f,1.0f,0.0f,1.0f,
-				0.0f,1.0f,0.0f,1.0f,
-				0.0f,1.0f,0.0f,1.0f	}; 
+				
+				1.0f,1.0f,0.0f,1.0f,
+				1.0f,1.0f,0.0f,1.0f,	//20
+				1.0f,1.0f,0.0f,1.0f,
+				1.0f,1.0f,0.0f,1.0f,
+				1.0f,1.0f,0.0f,1.0f	}; 
 
 float xLocation = 0.0f;
 float yLocation = 0.0f;
+float xDLocation = 0.5f;
+float yDLocation = 0.5f;
 
 int score = 0;
 
 //Declare functions
-void init();
 void display();
 void keyPressed(unsigned char key, int x, int y);
+void checkLocations();
+void moveShape();
 
 
 int main(int argc, char **argv)
@@ -66,68 +84,123 @@ int main(int argc, char **argv)
 	glutInitWindowPosition(0, 0);		//Sets position of window
 	glutCreateWindow("CS452 Project 1");	//Creates the window
 	glutInitContextVersion(4, 3);		//Tells OpenGL what version you are using
-	glutInitContextProfile(GLUT_CORE_PROFILE | GLUT_COMPATIBILITY_PROFILE);		//Tells OpenGL what profile you are using
+	glutInitContextProfile(GLUT_CORE_PROFILE | GLUT_COMPATIBILITY_PROFILE);
 	glewInit();		//Initializes glew
-	glutDisplayFunc(display);	//Displays the shapes
+	initShaders();	//Calls the initialize shader function in the header file
+	glutDisplayFunc(display);
+	
 	glutKeyboardFunc(keyPressed); // Tell GLUT to use the function "keyPressed" for key presses  
 	
-	init();	//Calls function to initialize the shaders and set up buffers
-	
 	glutMainLoop();	//Tells OpenGL to keep rendering (never ending loop)
+	
 	return 0;
-}
-
-void display()
-{
-	glClear(GL_COLOR_BUFFER_BIT);		//Clears the frame buffer
-	
-	glLoadIdentity();
-	glTranslatef(xLocation, yLocation, 0.0f);
-	
-	glDrawArrays(GL_LINE_LOOP, 0, 19);	//Renders the polygon
-	glFlush();					//Makes sure all data is rendered as soon as possible
 }
 
 void keyPressed(unsigned char key, int x, int y)
 {
 	if(key == 'a')		//Left
 	{
-		xLocation -= .01f;
+		xLocation -= .05f;
+		for(int i = 0; i < 57; i++)
+		{
+			if(i % 3 == 0)
+			{
+				vertices[i] -= .05f;
+			}
+		}
 	}
 	else if(key == 'd')	//Right
 	{
-		xLocation += .1f;
+		xLocation += .05f;
+		for(int i = 0; i < 57; i++)
+		{
+			if(i % 3 == 0)
+			{
+				vertices[i] += .05f;
+			}
+		}
 	}
 	else if(key == 'w')	//Up
 	{
-		yLocation += .1f;
+		yLocation += .05f;
+		for(int i = 0; i < 57; i++)
+		{
+			if(i % 3 == 1)
+			{
+				vertices[i] += .05f;
+			}
+		}
 	}
 	else if(key == 's')	//Down
 	{
-		yLocation -= .1f;
+		yLocation -= .05f;
+		for(int i = 0; i < 57; i++)
+		{
+			if(i % 3 == 1)
+			{
+				vertices[i] -= .05f;
+			}
+		}
 	}
+	checkLocations();
+	glutPostRedisplay();
 }
 
-void init()
+void display()
 {
-	initShaders();	//Calls the initialize shader function in the header file
+	glClear(GL_COLOR_BUFFER_BIT);
 	
 	glGenVertexArrays(1, &abuffer);
 	glBindVertexArray(abuffer);
-	
 	glGenBuffers(2, buffer);
-	
-	//Sets up pointers and stuff
 	glBindBuffer(GL_ARRAY_BUFFER, buffer[0]);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
 	glBindBuffer(GL_ARRAY_BUFFER, buffer[1]);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(colors), colors, GL_STATIC_DRAW);
 	glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, 0, (void*)0);
-	
-	//Enables vertex arrays to draw stuff
 	glEnableVertexAttribArray(0);
-	glEnableVertexAttribArray(1);	
+	glEnableVertexAttribArray(1);
+	
+	glDrawArrays(GL_POLYGON, 20, 23);
+	glDrawArrays(GL_POLYGON, 0, 19);	//Renders
+	glFlush();					//Makes sure all data is rendered as soon as possible
+}
+
+void checkLocations()
+{
+	if(	xLocation - xDLocation <= 0.1f && 
+		xLocation - xDLocation >= 0.0f &&
+		yLocation - yDLocation <= 0.1f && 
+		yLocation -yDLocation >= -0.05f)
+	{
+		score++;
+		cout << score << endl;
+		moveShape();
+	}
+	
+}
+
+void moveShape()
+{
+	int x = (rand() % 40) - 20;
+	int y = (rand() % 40) - 20;
+	
+	for(int i = 57; i < 72; i++)
+	{
+		xDLocation = (0.05f * x);
+		if(i % 2 == 0)
+		{
+			vertices[i] = (0.05f * x);
+			xDLocation = vertices[i];
+		}
+		if(i % 2 == 1)
+		{
+			vertices[i] = (0.05f * y);
+			yDLocation = vertices[i];
+		}
+	}
+	cout << "XD: " << xDLocation << "  YD: " << yDLocation << endl;
 }
 
 

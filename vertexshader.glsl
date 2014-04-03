@@ -1,5 +1,7 @@
 #version 130
 
+//Same vertex shader as lab1
+
 in vec3 in_position;
 in vec4 in_color;
 

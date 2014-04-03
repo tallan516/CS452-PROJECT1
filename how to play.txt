@@ -1,0 +1,4 @@
+1. Collect chunks of gold to score points.
+2. Avoid the ghost that chases you.
+3. You cannot go outside the window, so the ghost can trap you in the corners.
+4. The game is over when the ghost catches you.

@@ -5,66 +5,93 @@ using namespace std;
 GLuint abuffer;
 GLuint buffer[2];
 
-GLfloat vertices[] = {	0.0f,0.0f,0.0f,		//0
+GLfloat vertices[] = {	0.0f,0.0f,0.0f,
 				-0.0125f,0.0f,0.0f,
 				-0.025f,0.0125f,0.0f,
 				-0.025f,0.0375f,0.0f,
-				-0.0125f,0.05f,0.0f,
-				0.0125f,0.05f,0.0f,	//5
+				-0.0125f,0.05f,0.0f,	//5
+				0.0125f,0.05f,0.0f,
 				0.025f,0.0375f,0.0f,
 				0.025f,0.0125f,0.0f,
 				0.0125f,0.0f,0.0f,
-				0.0f,0.0f,0.0f,
-				0.0f,-0.0125f,0.0f,	//10
+				0.0f,0.0f,0.0f,		//10
+				0.0f,-0.0125f,0.0f,
 				-0.025f,-0.0125f,0.0f,
 				0.025f,-0.0125f,0.0f,
 				0.0f,-0.0125f,0.0f,
-				0.0f,-0.025f,0.0f,
-				-0.025f,-0.05f,0.0f,	//15
+				0.0f,-0.025f,0.0f,	//15
+				-0.025f,-0.05f,0.0f,
 				0.0f,-0.025f,0.0f,
 				0.025f,-0.05f,0.0f,
 				0.0f,-0.025f,0.0f,
 				
-				0.5f,0.5f,0.0f,
-				0.525f,0.525f,0.0f,		//20
+				0.5f,0.5f,0.0f,		//20
+				0.525f,0.525f,0.0f,
 				0.55f,0.5f,0.0f,
 				0.525f,0.475f,0.0f,
-				0.5f,0.5f,0.0f
+				
+				-1.0f,-1.0f,0.0f,
+				-1.0f,-0.9f,0.0f,		//25
+				-0.98f,-0.88f,0.0f,
+				-0.92f,-0.88f,0.0f,
+				-0.9f,-0.9f,0.0f,
+				-0.9f,-1.0f,0.0f,
+				-0.915f,-0.98f,0.0f,	//30
+				-0.93f,-1.0f,0.0f,
+				-0.95f,-0.98f,0.0f,
+				-0.97f,-1.0f,0.0f,
+				-0.985,-0.98f,0.0f,
+				-1.0f,-1.0f,0.0f
 					};
 
 
 
 				//R, G, B, A (transparency)
-GLfloat colors[] = {	0.0f,1.0f,0.0f,1.0f,	//0
-				0.0f,1.0f,0.0f,1.0f,
-				0.0f,1.0f,0.0f,1.0f,
-				0.0f,1.0f,0.0f,1.0f,
-				0.0f,1.0f,0.0f,1.0f,
-				0.0f,1.0f,0.0f,1.0f,	//5
-				0.0f,1.0f,0.0f,1.0f,
-				0.0f,1.0f,0.0f,1.0f,
-				0.0f,1.0f,0.0f,1.0f,
-				0.0f,1.0f,0.0f,1.0f,
-				0.0f,1.0f,0.0f,1.0f,	//10
-				0.0f,1.0f,0.0f,1.0f,
-				0.0f,1.0f,0.0f,1.0f,
-				0.0f,1.0f,0.0f,1.0f,
-				0.0f,1.0f,0.0f,1.0f,
-				0.0f,1.0f,0.0f,1.0f,	//15
-				0.0f,1.0f,0.0f,1.0f,
-				0.0f,1.0f,0.0f,1.0f,
-				0.0f,1.0f,0.0f,1.0f,
+GLfloat colors[] = {	0.0f,0.0f,1.0f,1.0f,
+				0.0f,0.0f,1.0f,1.0f,
+				0.0f,0.0f,1.0f,1.0f,
+				0.0f,0.0f,1.0f,1.0f,
+				0.0f,0.0f,1.0f,1.0f,	//5
+				0.0f,0.0f,1.0f,1.0f,
+				0.0f,0.0f,1.0f,1.0f,
+				0.0f,0.0f,1.0f,1.0f,
+				0.0f,0.0f,1.0f,1.0f,
+				0.0f,0.0f,1.0f,1.0f,	//10
+				0.0f,0.0f,1.0f,1.0f,
+				0.0f,0.0f,1.0f,1.0f,
+				0.0f,0.0f,1.0f,1.0f,
+				0.0f,0.0f,1.0f,1.0f,
+				0.0f,0.0f,1.0f,1.0f,	//15
+				0.0f,0.0f,1.0f,1.0f,
+				0.0f,0.0f,1.0f,1.0f,
+				0.0f,0.0f,1.0f,1.0f,
+				0.0f,0.0f,1.0f,1.0f,
 				
-				1.0f,1.0f,0.0f,1.0f,
-				1.0f,1.0f,0.0f,1.0f,	//20
-				1.0f,1.0f,0.0f,1.0f,
-				1.0f,1.0f,0.0f,1.0f,
-				1.0f,1.0f,0.0f,1.0f	}; 
+				1.0f,0.84f,0.0f,1.0f,	//20
+				1.0f,0.84f,0.0f,1.0f,
+				1.0f,0.84f,0.0f,1.0f,
+				1.0f,0.84f,0.0f,1.0f,
+				
+				1.0f,1.0f,1.0f,1.0f,
+				1.0f,1.0f,1.0f,1.0f,	//25
+				1.0f,1.0f,1.0f,1.0f,
+				1.0f,1.0f,1.0f,1.0f,
+				1.0f,1.0f,1.0f,1.0f,
+				1.0f,1.0f,1.0f,1.0f,
+				.0f,.0f,.0f,1.0f,	//30
+				.0f,.0f,.0f,1.0f,
+				.0f,.0f,.0f,1.0f,
+				.0f,.0f,.0f,1.0f,
+				.0f,.0f,.0f,1.0f,
+				1.0f,1.0f,1.0f,1.0f
+					}; 
 
 float xLocation = 0.0f;
 float yLocation = 0.0f;
-float xDLocation = 0.5f;
-float yDLocation = 0.5f;
+float xGLocation = 0.5f;
+float yGLocation = 0.5f;
+float xHLocation = -1.0f;
+float yHLocation = -1.0f;
 
 int score = 0;
 
@@ -72,13 +99,14 @@ int score = 0;
 void display();
 void keyPressed(unsigned char key, int x, int y);
 void checkLocations();
-void moveShape();
+void moveGold();
+void moveGhost();
 
 
 int main(int argc, char **argv)
 {
 	//Main method stuff
-	glutInit(&argc, argv);		//Initializes glut
+	glutInit(&argc, argv);	//Initializes glut
 	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);	//Glut display mode
 	glutInitWindowSize(500, 500);		//Sets size of window
 	glutInitWindowPosition(0, 0);		//Sets position of window
@@ -88,60 +116,76 @@ int main(int argc, char **argv)
 	glewInit();		//Initializes glew
 	initShaders();	//Calls the initialize shader function in the header file
 	glutDisplayFunc(display);
-	
-	glutKeyboardFunc(keyPressed); // Tell GLUT to use the function "keyPressed" for key presses  
+	glutKeyboardFunc(keyPressed); // Tell GLUT to use the function "keyPressed" for key presses
 	
 	glutMainLoop();	//Tells OpenGL to keep rendering (never ending loop)
-	
+
 	return 0;
 }
 
 void keyPressed(unsigned char key, int x, int y)
 {
-	if(key == 'a')		//Left
+	if(key == 'a')	//Left
 	{
-		xLocation -= .05f;
-		for(int i = 0; i < 57; i++)
+		if(xLocation > -0.95f)
 		{
-			if(i % 3 == 0)
+			xLocation -= .05f;
+			for(int i = 0; i < 57; i++)
 			{
-				vertices[i] -= .05f;
+				if(i % 3 == 0)
+				{
+					vertices[i] -= .05f;
+				}
 			}
 		}
 	}
 	else if(key == 'd')	//Right
 	{
-		xLocation += .05f;
-		for(int i = 0; i < 57; i++)
+		if(xLocation < 0.95f)
 		{
-			if(i % 3 == 0)
+			xLocation += .05f;
+			for(int i = 0; i < 57; i++)
 			{
-				vertices[i] += .05f;
+				if(i % 3 == 0)
+				{
+					vertices[i] += .05f;
+				}
 			}
 		}
 	}
 	else if(key == 'w')	//Up
 	{
-		yLocation += .05f;
-		for(int i = 0; i < 57; i++)
+		if(yLocation < 0.95f)
 		{
-			if(i % 3 == 1)
+			yLocation += .05f;
+			for(int i = 0; i < 57; i++)
 			{
-				vertices[i] += .05f;
+				if(i % 3 == 1)
+				{
+					vertices[i] += .05f;
+				}
 			}
 		}
 	}
 	else if(key == 's')	//Down
 	{
-		yLocation -= .05f;
-		for(int i = 0; i < 57; i++)
+		if(yLocation > -0.95f)
 		{
-			if(i % 3 == 1)
+			yLocation -= .05f;
+			for(int i = 0; i < 57; i++)
 			{
-				vertices[i] -= .05f;
+				if(i % 3 == 1)
+				{
+					vertices[i] -= .05f;
+				}
 			}
 		}
 	}
+	else if(key == 'q')
+	{
+		exit(0);
+	}
+	moveGhost();
 	checkLocations();
 	glutPostRedisplay();
 }
@@ -162,57 +206,95 @@ void display()
 	glEnableVertexAttribArray(0);
 	glEnableVertexAttribArray(1);
 	
-	glDrawArrays(GL_POLYGON, 19, 22);
-	glDrawArrays(GL_POLYGON, 0, 19);	//Renders
+	glDrawArrays(GL_POLYGON, 19, 4);	//Gold
+	glDrawArrays(GL_POLYGON, 23, 12);	//Ghost
+	glDrawArrays(GL_POLYGON, 0, 18);	//Stickfigure
 	glFlush();					//Makes sure all data is rendered as soon as possible
 }
 
 void checkLocations()
 {
-	if(	xLocation - xDLocation <= 0.1f && 
-		xLocation - xDLocation >= 0.0f &&
-		yLocation - yDLocation <= 0.1f && 
-		yLocation -yDLocation >= -0.05f)
+	//If the ghost captures you
+	if(	xLocation - xHLocation <= 0.10f &&
+		xLocation - xHLocation >= -0.05f &&
+		yLocation - yHLocation <= 0.15f &&
+		yLocation - yHLocation >= -0.05f)
 	{
-		score++;
-		cout << score << endl;
-		moveShape();
+		cout << "\nGAME OVER" << endl;
+		cout << "The ghost captured you." << endl;
+		cout << "\nFinal score: " << score << endl;
+		exit(0);
 	}
 	
+	//If you collect a piece of gold
+	if(	xLocation - xGLocation <= 0.1f &&
+		xLocation - xGLocation >= 0.0f &&
+		yLocation - yGLocation <= 0.1f &&
+		yLocation - yGLocation >= -0.05f)
+	{
+		score++;
+		cout << "Score: " << score << endl;
+		moveGold();
+	}
+
 }
 
-void moveShape()
+void moveGold()
 {
 	int x = (rand() % 40) - 20;
 	int y = (rand() % 40) - 20;
-	
-	xDLocation = (0.05f * x);
-	yDLocation = (0.05f * y);
-	
-	vertices[57] = xDLocation;
-	vertices[58] = yDLocation;
-	
-	vertices[60] = xDLocation + 0.025f;
-	vertices[61] = yDLocation + 0.025f;
-	
-	vertices[63] = xDLocation + 0.05f;
-	vertices[64] = yDLocation;
-	
-	vertices[66] = xDLocation + 0.025f;
-	vertices[67] = yDLocation - 0.025f;
-	
-	vertices[69] = xDLocation;
-	vertices[70] = yDLocation;
-	
-	
-	cout << "XD: " << xDLocation << "  YD: " << yDLocation << endl;
-	for(int i = 57; i < 71; i+=3)
-	{
-		cout << vertices[i] << "\t" << vertices[i+1] << endl;
-	}
-	
+
+	xGLocation = (0.05f * x);
+	yGLocation = (0.05f * y);
+
+	vertices[57] = xGLocation;
+	vertices[58] = yGLocation;
+	vertices[60] = xGLocation + 0.025f;
+	vertices[61] = yGLocation + 0.025f;
+	vertices[63] = xGLocation + 0.05f;
+	vertices[64] = yGLocation;
+	vertices[66] = xGLocation + 0.025f;
+	vertices[67] = yGLocation - 0.025f;
+
 }
 
+void moveGhost()
+{
+	//Move Ghost
+	float move = 0.032f;
+	if(xHLocation < xLocation)
+	{
+		xHLocation += move;
+		for(int i = 69; i < 104; i+=3)
+		{
+			vertices[i] += move;
+		}
+	}
+	else if(xHLocation > xLocation)
+	{
+		xHLocation -= move;
+		for(int i = 69; i < 104; i+=3)
+		{
+			vertices[i] -= move;
+		}
+	}
+	if(yHLocation < yLocation)
+	{
+		yHLocation += move;
+		for(int i = 70; i < 104; i+=3)
+		{
+			vertices[i] += move;
+		}
+	}
+	else if(yHLocation > yLocation)
+	{
+		yHLocation -= move;
+		for(int i = 70; i < 104; i+=3)
+		{
+			vertices[i] -= move;
+		}
+	}
+}
 
 
 

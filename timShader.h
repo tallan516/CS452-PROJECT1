@@ -11,6 +11,8 @@
 #include <string.h>
 using namespace std;
 
+//Same shader file as lab 3
+
 //Declare functions
 void compileShader(GLuint shader);
 void attachShaders(GLuint shader1, GLuint shader2, GLuint program);
